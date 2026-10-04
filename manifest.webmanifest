@@ -1,4 +1,5 @@
 {
+  "id": "/b2plus-3d/",
   "name": "B2+ Hotel Style 3D — Kamar Kos K.201",
   "short_name": "B2+ 3D",
   "description": "Model 3D interaktif kamar kos B2+ (modul K.201, 3.50 × 5.00 m).",
@@ -9,6 +10,35 @@
   "orientation": "any",
   "background_color": "#ece9e4",
   "theme_color": "#2a2622",
+  "categories": [
+    "lifestyle",
+    "productivity",
+    "utilities"
+  ],
+  "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "screenshots/wide-iso.png",
+      "sizes": "1600x1000",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Isometrik kamar B2+ dengan dinding kepala kasur dan kaca geser penuh"
+    },
+    {
+      "src": "screenshots/narrow-kaca.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Pandangan ke kaca geser penuh dari dalam kamar"
+    },
+    {
+      "src": "screenshots/narrow-iso.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Isometrik kamar di layar ponsel"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-192.png",
