@@ -1,0 +1,32 @@
+{
+  "name": "B2+ Hotel Style 3D — Kamar Kos K.201",
+  "short_name": "B2+ 3D",
+  "description": "Model 3D interaktif kamar kos B2+ (modul K.201, 3.50 × 5.00 m).",
+  "lang": "id",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ece9e4",
+  "theme_color": "#2a2622",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

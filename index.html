@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>B2+ Hotel Style 3D</title>
+<meta name="description" content="Model 3D interaktif kamar kos B2+ (modul K.201, 3.50 × 5.00 m)">
+<meta name="theme-color" content="#2a2622">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="B2+ 3D">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#eef2f3;--card:#fbfcfc;--sheet:#ffffff;--ink:#1b2730;--ink-2:#56656f;--ink-3:#8795a0;
+  --line:#d5dde1;--line-strong:#9fb0ba;--grid:#edf1f3;--accent:#1f5f8a;--fixed:#c63a2f;
+  --good:#2f7a4f;--warn:#a8641a;--part:#3b4952;--code-bg:#1b2730;--code-fg:#f3f6f7;
+  --f-bed:#dbe7f3;--f-head:#7f9bb8;--f-store:#eee1c6;--f-work:#d9e9d4;--f-chair:#c4dbbd;
+  --f-live:#f0dbe1;--f-live-d:#e2c0ca;--f-pantry:#f6dfbd;--f-wet:#d3e8f2;--hatch:#a3c6d8;
+  --scrim:rgba(18,26,32,.55);
+  --font-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",Consolas,monospace;
+}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--bg:#0f1519;--card:#141c21;--sheet:#172128;--ink:#dbe5eb;--ink-2:#9dafba;--ink-3:#6f818d;
+--line:#26333b;--line-strong:#3d4f5a;--grid:#1d2930;--accent:#74b4de;--fixed:#ff6f61;
+--good:#6cc191;--warn:#e3a35a;--part:#95a8b4;--code-bg:#dbe5eb;--code-fg:#0f1519;
+--f-bed:#1f3446;--f-head:#4f6e8c;--f-store:#3b3122;--f-work:#20352a;--f-chair:#2b4632;
+--f-live:#3b2530;--f-live-d:#553543;--f-pantry:#403019;--f-wet:#15303f;--hatch:#2b5a73;
+--scrim:rgba(0,0,0,.62);color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+--bg:#0f1519;--card:#141c21;--sheet:#172128;--ink:#dbe5eb;--ink-2:#9dafba;--ink-3:#6f818d;
+--line:#26333b;--line-strong:#3d4f5a;--grid:#1d2930;--accent:#74b4de;--fixed:#ff6f61;
+--good:#6cc191;--warn:#e3a35a;--part:#95a8b4;--code-bg:#dbe5eb;--code-fg:#0f1519;
+--f-bed:#1f3446;--f-head:#4f6e8c;--f-store:#3b3122;--f-work:#20352a;--f-chair:#2b4632;
+--f-live:#3b2530;--f-live-d:#553543;--f-pantry:#403019;--f-wet:#15303f;--hatch:#2b5a73;
+--scrim:rgba(0,0,0,.62);color-scheme:dark;
+}
+
+:root{--font-display:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --glass:rgba(250,248,245,.86);--glass-line:rgba(40,36,32,.13);--glass-ink:#1f2428;--glass-ink2:#5a6168;--chip-on:#2a2622;--chip-on-ink:#f6f1ea;
+  --tab-on:#ffffff;--sheet-bg:#fbfaf8;--load-bg:#ece9e4;--load-ink:#5a6168;--brand:#2a2622;--brand-ink:#efe7db;--f-plant:#b9d3a8;--f-rug:#efe9de}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--glass:rgba(24,27,30,.84);--glass-line:rgba(255,255,255,.12);--glass-ink:#e7ebee;--glass-ink2:#a7b0b7;
+  --chip-on:#efe7db;--chip-on-ink:#1c1916;--tab-on:#3a3f44;--sheet-bg:#14191d;--load-bg:#14181b;--load-ink:#a7b0b7;--f-plant:#2f4a2c;--f-rug:#24221e}}
+:root[data-theme="dark"]{--glass:rgba(24,27,30,.84);--glass-line:rgba(255,255,255,.12);--glass-ink:#e7ebee;--glass-ink2:#a7b0b7;--chip-on:#efe7db;--chip-on-ink:#1c1916;
+  --tab-on:#3a3f44;--sheet-bg:#14191d;--load-bg:#14181b;--load-ink:#a7b0b7;--f-plant:#2f4a2c;--f-rug:#24221e}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0;overflow:hidden;background:var(--load-bg);color:var(--glass-ink);font-family:var(--font-body);-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+button{font-family:inherit}
+.stage{position:fixed;inset:0;touch-action:none;background:#e9ebec}
+.stage canvas{display:block;width:100%!important;height:100%!important;outline:none}
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.15);backdrop-filter:blur(14px) saturate(1.15);border:1px solid var(--glass-line);box-shadow:0 8px 28px rgba(0,0,0,.14)}
+.topbar{position:fixed;z-index:5;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 12px);right:calc(env(safe-area-inset-right,0px) + 12px);display:flex;justify-content:space-between;align-items:flex-start;gap:10px;pointer-events:none}
+.topbar>*{pointer-events:auto}
+.brand{border-radius:14px;padding:8px 12px;display:flex;align-items:center;gap:10px;min-width:0;flex:0 1 auto}
+.mark{width:32px;height:32px;border-radius:9px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font:750 13px var(--font-display);flex:none}
+.brand div{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.brand b{font-size:15px;font-weight:650;white-space:nowrap}
+.brand span{font-size:12px;color:var(--glass-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.actions{display:flex;gap:8px;flex:none}
+.ibtn{height:44px;min-width:44px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 11px;color:var(--glass-ink);font:600 13px var(--font-body);cursor:pointer}
+.ibtn svg{width:21px;height:21px}
+.ibtn:focus-visible,.chip3d:focus-visible,.tabs button:focus-visible,.goto:focus-visible{outline:2px solid #b07a45;outline-offset:2px}
+.dock{position:fixed;z-index:5;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);transform:translateX(-50%);width:min(720px,calc(100% - 20px));border-radius:18px;padding:10px 12px 8px;display:flex;flex-direction:column;gap:8px}
+.cap{margin:0;font-size:13px;line-height:1.4;color:var(--glass-ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tabs{display:flex;gap:3px;padding:3px;border-radius:11px;background:rgba(127,127,127,.15)}
+.tabs button{flex:1;border:0;background:none;padding:8px 0;border-radius:9px;font:600 13px var(--font-body);color:var(--glass-ink2);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--tab-on);color:var(--glass-ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.row{display:flex;align-items:center;gap:10px;min-width:0}
+.rl{display:none;font:600 10.5px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--glass-ink2);width:58px;flex:none}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px;min-width:0;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.chips::-webkit-scrollbar{display:none}
+.chip3d{flex:none;font:500 13px/1 var(--font-body);padding:10px 14px;border-radius:999px;border:1px solid var(--glass-line);background:transparent;color:var(--glass-ink);cursor:pointer;white-space:nowrap}
+.chip3d[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink);border-color:var(--chip-on)}
+.dock[data-tab="view"] .row:not([data-row="view"]),.dock[data-tab="style"] .row:not([data-row="style"]),.dock[data-tab="light"] .row:not([data-row="light"]){display:none}
+.hint{margin:0;font-size:11.5px;color:var(--glass-ink2);text-align:center;transition:opacity .5s}
+.hint.dim{opacity:.6}
+.toast{position:fixed;z-index:8;left:50%;top:calc(env(safe-area-inset-top,0px) + 72px);transform:translate(-50%,-8px);background:rgba(20,24,28,.86);color:#fff;font-size:13px;padding:8px 14px;border-radius:999px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.loading{position:absolute;inset:0;z-index:2;display:grid;place-items:center;align-content:center;gap:12px;background:var(--load-bg);color:var(--load-ink);font-size:13px}
+.ready3d .loading{display:none}
+.loading .mark{width:68px;height:68px;border-radius:18px;font-size:22px}
+.bar{width:150px;height:3px;border-radius:3px;background:rgba(127,127,127,.25);overflow:hidden}
+.bar span{display:block;width:40%;height:100%;background:#b07a45;animation:ld 1.1s ease-in-out infinite}
+@keyframes ld{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+@media (prefers-reduced-motion:reduce){.bar span{animation:none;width:100%}}
+.sheet{position:fixed;z-index:10;top:0;right:0;bottom:0;width:min(470px,100%);overflow:auto;-webkit-overflow-scrolling:touch;background:var(--sheet-bg);color:var(--ink);
+  padding:calc(env(safe-area-inset-top,0px) + 12px) calc(env(safe-area-inset-right,0px) + 18px) calc(env(safe-area-inset-bottom,0px) + 28px) 18px;box-shadow:-12px 0 40px rgba(0,0,0,.28);display:flex;flex-direction:column;gap:14px}
+.sheet .sh{display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:calc(-12px - env(safe-area-inset-top,0px));background:var(--sheet-bg);padding-block:6px;z-index:1}
+.sheet h2{margin:0;font:700 21px var(--font-display)}
+.sheet h3{margin:8px 0 0;font:650 16px var(--font-display)}
+.sheet p{margin:0}
+.sheet .lede{color:var(--ink-2);font-size:14.5px;line-height:1.5}
+.sheet .ibtn{border:1px solid var(--line);background:transparent;color:var(--ink)}
+.kpis{display:flex;flex-wrap:wrap;gap:6px}
+.kpis span{font:12px var(--font-mono);padding:3px 8px;border:1px solid var(--line);border-radius:4px;color:var(--ink-2)}
+.imp{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.imp li{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px}
+.imp .n{grid-row:span 3;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--sheet-bg);display:grid;place-items:center;font:600 12px var(--font-mono)}
+.imp b{font-size:14.5px}
+.imp p{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.goto{justify-self:start;border:0;background:none;color:var(--accent);font:600 13px var(--font-body);padding:6px 0;cursor:pointer}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font:600 11px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+tbody th{font-weight:500;color:var(--ink-2);width:38%}
+.planfig{margin:0;background:var(--sheet);border:1px solid var(--line);padding:10px 6px 4px}
+.notes{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;color:var(--ink-2);font-size:13.5px;line-height:1.45}
+.tip{font-size:13.5px;background:rgba(176,122,69,.12);border:1px solid rgba(176,122,69,.35);border-radius:10px;padding:10px 12px}
+.ver{font:11.5px var(--font-mono);color:var(--ink-3)}
+.plan .callout{fill:var(--accent);stroke:var(--sheet);stroke-width:2}
+.plan .callout-t{font-family:var(--font-mono);font-size:12px;font-weight:600;fill:var(--sheet)}
+.plan .f-pot{fill:var(--f-store);stroke:var(--ink);stroke-width:.9}
+.plan .f-plant{fill:var(--f-plant);stroke:var(--ink-2);stroke-width:.6}
+.plan .rug{fill:var(--f-rug);stroke:var(--ink-3);stroke-width:.8;stroke-dasharray:3 2}
+.plan .curtain-l{fill:none;stroke:var(--accent);stroke-width:1.4}
+.render-mode .topbar,.render-mode .dock{display:none}
+@media (min-width:900px){
+  .dock{left:calc(env(safe-area-inset-left,0px) + 16px);transform:none;width:min(640px,48vw)}
+  .tabs{display:none}.rl{display:block}
+  .dock .row{display:flex!important}
+}
+@media (max-width:420px){.brand span{max-width:52vw}.ibtn span{display:none}}
+
+.plan{display:block;width:100%;height:auto}
+.plan text{font-family:var(--font-display);font-stretch:85%}
+.plan .floor{fill:var(--sheet)}
+.plan .grid{stroke:var(--grid);stroke-width:.7}
+.plan .wet{fill:var(--f-wet)}
+.plan .shower{fill:url(#hatchWet);stroke:var(--ink-3);stroke-width:.8}
+.plan .screen{stroke:var(--ink);stroke-width:2.2}
+.plan .curtain{stroke:var(--ink-2);stroke-width:1.3;stroke-dasharray:3 3}
+.plan .fx{fill:var(--sheet);stroke:var(--ink);stroke-width:1}
+.plan .fx-d{fill:var(--ink-2)}
+.plan .part{fill:var(--part)}
+.plan .wall{fill:var(--ink)}
+.plan .masonry{fill:url(#hatchWall);stroke:var(--ink);stroke-width:1.2}
+.plan .win{fill:var(--sheet);stroke:var(--ink);stroke-width:.8}
+.plan .glass-fixed{stroke:var(--fixed);stroke-width:1.3}
+.plan .glass{stroke:var(--ink-2);stroke-width:1}
+.plan .arc,.plan .arc-fixed{fill:none;stroke-width:.9;stroke-dasharray:4 3}
+.plan .arc{stroke:var(--ink-2)}
+.plan .arc-fixed{stroke:var(--fixed);stroke-width:1.1}
+.plan .leaf{stroke:var(--ink);stroke-width:3}
+.plan .leaf-r{fill:var(--sheet);stroke:var(--ink);stroke-width:1.2}
+.plan .leaf-fixed{fill:var(--fixed)}
+.plan .arrow{stroke:var(--ink-2);stroke-width:1}
+.plan .arrow-head{fill:var(--ink-2)}
+.plan .arrow-fill{fill:var(--fixed)}
+.plan .f-bed{fill:var(--f-bed);stroke:var(--ink);stroke-width:1.1}
+.plan .f-head{fill:var(--f-head)}
+.plan .pillow{fill:var(--sheet);stroke:var(--ink-2);stroke-width:.8}
+.plan .f-store{fill:var(--f-store);stroke:var(--ink);stroke-width:1.1}
+.plan .rod{stroke:var(--ink-2);stroke-width:.8;stroke-dasharray:5 3}
+.plan .f-work{fill:var(--f-work);stroke:var(--ink);stroke-width:1.1}
+.plan .f-chair{fill:var(--f-chair);stroke:var(--ink);stroke-width:.9}
+.plan .f-chair-b{fill:var(--ink-2)}
+.plan .f-live{fill:var(--f-live);stroke:var(--ink);stroke-width:1.1}
+.plan .f-live-d{fill:var(--f-live-d);stroke:var(--ink);stroke-width:.8}
+.plan .f-live-l{fill:var(--sheet);stroke:var(--ink);stroke-width:1}
+.plan .f-pantry{fill:var(--f-pantry);stroke:var(--ink);stroke-width:1.1}
+.plan .hob{fill:none;stroke:var(--ink);stroke-width:1}
+.plan .f-wet{fill:var(--f-wet);stroke:var(--ink);stroke-width:1.1}
+.plan .mirror{stroke:var(--accent);stroke-width:3}
+.plan .tv{stroke:var(--ink);stroke-width:4}
+.plan .ghost{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-dasharray:7 4}
+.plan .ghost-in{fill:none;stroke:var(--accent);stroke-width:.9;stroke-dasharray:4 3}
+.plan .grab{stroke:var(--accent);stroke-width:4;stroke-linecap:round}
+.plan .ln-thin{fill:none;stroke:var(--ink-2);stroke-width:.8}
+.plan .lbl{font-size:14px;font-weight:600;fill:var(--ink)}
+.plan .lbl-s{font-size:11.5px;font-weight:500;fill:var(--ink-2)}
+.plan .lbl-xs{font-size:11px;font-weight:600;fill:var(--ink)}
+.plan .lbl-acc{font-size:13px;font-weight:600;fill:var(--accent)}
+.plan .lbl-acc-s{font-size:11px;font-weight:500;fill:var(--accent)}
+.plan .halo-store{paint-order:stroke;stroke:var(--f-store);stroke-width:5px;stroke-linejoin:round}
+.plan .tag-txt{font-size:11px;letter-spacing:.14em;fill:var(--ink-3);font-weight:600}
+.plan .dim{stroke:var(--ink-3);stroke-width:.8}
+.plan .dim-t{stroke:var(--ink-3);stroke-width:1.5}
+.plan .dimtxt{font-family:var(--font-mono);font-stretch:100%;font-size:13px;fill:var(--ink-2)}
+.plan .dimtxt-s{font-family:var(--font-mono);font-stretch:100%;font-size:11px;fill:var(--fixed)}
+.hw-bg{fill:var(--sheet)}.hw-ln{stroke:var(--ink);stroke-width:1.1}
+.hs-bg{fill:var(--f-wet)}.hs-ln{stroke:var(--hatch);stroke-width:1}
+</style>
+</head>
+<body data-app="1">
+<svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs><pattern id="hatchWall" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" class="hw-bg"/><line x1="0" y1="0" x2="0" y2="7" class="hw-ln"/></pattern><pattern id="hatchWet" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="9" height="9" class="hs-bg"/><line x1="0" y1="0" x2="0" y2="9" class="hs-ln"/></pattern></defs></svg>
+<div class="stage" id="stage"><div class="loading" id="loading"><div class="mark">B2+</div><p>Memuat model 3D…</p><div class="bar"><span></span></div></div></div>
+<div class="toast" id="toast3d" role="status" aria-live="polite"></div>
+<header class="topbar">
+  <div class="brand glass"><div class="mark">B2+</div><div><b>Hotel Style</b><span>Kamar kos K.201 · 3.50 × 5.00 m</span></div></div>
+  <div class="actions">
+    <button type="button" class="ibtn glass" id="btn-install" hidden aria-label="Pasang aplikasi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pasang</span></button>
+    <button type="button" class="ibtn glass" id="btn-full" aria-label="Layar penuh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button type="button" class="ibtn glass" id="btn-info" aria-label="Info desain" aria-expanded="false" aria-controls="info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+<section class="dock glass" id="dock" data-tab="view" aria-label="Kontrol 3D">
+  <p class="cap" id="view-cap" aria-live="polite"></p>
+  <div class="tabs" role="tablist" aria-label="Pilihan kontrol">
+    <button type="button" role="tab" data-tab="view" aria-selected="true">Sudut</button>
+    <button type="button" role="tab" data-tab="style" aria-selected="false">Gaya</button>
+    <button type="button" role="tab" data-tab="light" aria-selected="false">Cahaya</button>
+  </div>
+  <div class="row" data-row="view"><span class="rl">Sudut</span><div class="chips"><button type="button" class="chip3d" data-k="view" data-v="iso" aria-pressed="true">Isometrik</button><button type="button" class="chip3d" data-k="view" data-v="iso2" aria-pressed="false">Isometrik 2</button><button type="button" class="chip3d" data-k="view" data-v="denah" aria-pressed="false">Denah render</button><button type="button" class="chip3d" data-k="view" data-v="kaca" aria-pressed="false">Ke kaca geser</button><button type="button" class="chip3d" data-k="view" data-v="pintu" aria-pressed="false">Dari pintu</button><button type="button" class="chip3d" data-k="view" data-v="kasur" aria-pressed="false">Kasur → TV</button><button type="button" class="chip3d" data-k="view" data-v="jendela" aria-pressed="false">Dari kaca</button><button type="button" class="chip3d" data-k="view" data-v="km" aria-pressed="false">Kamar mandi</button></div></div>
+  <div class="row" data-row="style"><span class="rl">Gaya</span><div class="chips"><button type="button" class="chip3d" data-k="style" data-v="kontemporer" aria-pressed="true">Kontemporer Hangat (referensi)</button><button type="button" class="chip3d" data-k="style" data-v="japandi" aria-pressed="false">Japandi</button><button type="button" class="chip3d" data-k="style" data-v="hotel" aria-pressed="false">Modern Hotel</button><button type="button" class="chip3d" data-k="style" data-v="tropis" aria-pressed="false">Tropis</button></div></div>
+  <div class="row" data-row="light"><span class="rl">Cahaya</span><div class="chips"><button type="button" class="chip3d" data-k="light" data-v="siang" aria-pressed="true">Siang</button><button type="button" class="chip3d" data-k="light" data-v="senja" aria-pressed="false">Senja</button><button type="button" class="chip3d" data-k="light" data-v="malam" aria-pressed="false">Malam</button><button type="button" class="chip3d" data-k="ao" data-v="ao" aria-pressed="false">Bayangan halus</button></div></div>
+  <p class="hint" id="hint3d"></p>
+</section>
+<aside class="sheet" id="info" hidden aria-label="Info desain">
+  <div class="sh"><h2>B2+ Hotel Style</h2><button type="button" class="ibtn" id="btn-close" aria-label="Tutup info"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <p class="lede">Pengembangan alternatif B2 modul kos K.201: kayu gelap, plester krem, kain taupe, aksen marmer dan teraso, lampu track, serta kaca geser penuh. Pintu masuk dan posisi KM tetap.</p>
+  <div class="kpis"><span>3.50 × 5.00 m</span><span>Kasur 160 × 200</span><span>KM 2.68 m²</span><span>Lantai bebas 8.4 m²</span><span>Jalur min 75 cm</span><span>Kaca 3.20 × 2.60 m</span></div>
+  <p class="tip" id="ios-tip" hidden>Di iPhone atau iPad: ketuk tombol Bagikan di Safari, lalu pilih “Tambahkan ke Layar Utama” agar aplikasi terpasang.</p>
+  <h3>Yang diperbaiki dari B2</h3><ol class="imp"><li><span class="n">1</span><b>Dinding kepala kasur bergaya hotel</b><p>Panel kayu gelap di kedua sisi, tiga panel kain taupe dengan lampu latar, kotak atas dengan ceruk berlampu, dan lampu linear vertikal di atas nakas. Panel juga membantu meredam suara dari K.202.</p><button type="button" class="goto" data-goto="iso">Lihat: Isometrik →</button></li><li><span class="n">2</span><b>Kaca geser penuh lantai–plafon</b><p>Jendela 2.25 m diganti kaca geser 3.20 × 2.60 m: empat panel (dua mati, dua geser), rangka aluminium hitam dengan transom. Railing kaca 1.05 m di luar sebagai pengaman.</p><button type="button" class="goto" data-goto="kaca">Lihat: Ke kaca geser →</button></li><li><span class="n">3</span><b>Gorden dari kantong plafon</b><p>Vitrase dan blackout setinggi ruang tergantung dari kantong di plafon, jadi rel tidak terlihat dan kaca terbaca utuh.</p><button type="button" class="goto" data-goto="kaca">Lihat: Ke kaca geser →</button></li><li><span class="n">4</span><b>Lemari setinggi plafon + rak terbuka</b><p>Lemari smoked oak tanpa handle dengan LED tepi, ditambah rak terbuka berlampu untuk dekorasi. Bangku berbantal bouclé di depannya.</p><button type="button" class="goto" data-goto="jendela">Lihat: Dari kaca →</button></li><li><span class="n">5</span><b>Konsol dan meja ber-top teraso</b><p>Konsol melayang di bawah TV dan meja kerja 80 cm memakai top teraso. Dinding TV berupa kisi kayu yang diapit panel batu besar.</p><button type="button" class="goto" data-goto="iso2">Lihat: Isometrik 2 →</button></li><li><span class="n">6</span><b>Kasur berlapis kain, nakas marmer</b><p>Rangka dan headboard tinggi berlapis kain taupe; nakas melayang dengan top marmer hitam dan vas ranting.</p><button type="button" class="goto" data-goto="iso">Lihat: Isometrik →</button></li><li><span class="n">7</span><b>Lampu track magnetik</b><p>Dua jalur lampu track hitam di plafon; LED aksen di lemari, rak, konsol, dan panel kepala kasur menyala lembut sepanjang hari.</p><button type="button" class="goto" data-goto="pintu">Lihat: Dari pintu →</button></li><li><span class="n">8</span><b>KM senada</b><p>Dinding porselen batu krem, wastafel di atas kabinet kayu gelap dengan top teraso, cermin berlampu, kaca shower rangka hitam.</p><button type="button" class="goto" data-goto="km">Lihat: Kamar mandi →</button></li></ol>
+  <h3>Material: <span id="style-name">Kontemporer Hangat (referensi)</span></h3>
+  <table><tbody><tr><th scope="row">Lantai</th><td data-style-row="lantai">Porselen 60×120 greige, nat tipis</td></tr><tr><th scope="row">Dinding</th><td data-style-row="dinding">Plester tekstur (limewash) krem</td></tr><tr><th scope="row">Dinding kepala kasur</th><td data-style-row="aksen">Panel smoked oak + 3 panel kain taupe berlampu latar, kotak atas dengan ceruk LED</td></tr><tr><th scope="row">Dinding TV</th><td data-style-row="tv">Kisi smoked oak, diapit panel batu besar</td></tr><tr><th scope="row">Kasur</th><td data-style-row="kasur">Rangka dan headboard tinggi berlapis kain taupe</td></tr><tr><th scope="row">Lemari</th><td data-style-row="lemari">Smoked oak setinggi plafon, tanpa handle, LED tepi; rak terbuka rangka hitam</td></tr><tr><th scope="row">Top konsol & meja</th><td data-style-row="top">Teraso terang</td></tr><tr><th scope="row">Nakas</th><td data-style-row="nakas">Melayang, kayu gelap dengan top marmer hitam</td></tr><tr><th scope="row">Linen</th><td data-style-row="linen">Putih, bantal taupe dan abu, selimut sage</td></tr><tr><th scope="row">Gorden</th><td data-style-row="gorden">Vitrase putih + blackout taupe dari kantong plafon</td></tr><tr><th scope="row">Jendela</th><td data-style-row="jendela">Kaca geser penuh 3.20 × 2.60 m, rangka aluminium hitam, railing kaca</td></tr><tr><th scope="row">KM dinding</th><td data-style-row="kmdinding">Porselen batu krem 60×120</td></tr><tr><th scope="row">KM lantai</th><td data-style-row="kmlantai">Porselen greige 60×60</td></tr><tr><th scope="row">Aksen logam</th><td data-style-row="logam">Hitam doff</td></tr></tbody></table>
+  <h3>Denah</h3><figure class="planfig"><svg class="plan" viewBox="-64 -82 436 624" xmlns="http://www.w3.org/2000/svg" role="img"><title>Denah B2+</title><rect x="0" y="0" width="350" height="500" class="floor"/><line x1="50" y1="0" x2="50" y2="500" class="grid"/><line x1="100" y1="0" x2="100" y2="500" class="grid"/><line x1="150" y1="0" x2="150" y2="500" class="grid"/><line x1="200" y1="0" x2="200" y2="500" class="grid"/><line x1="250" y1="0" x2="250" y2="500" class="grid"/><line x1="300" y1="0" x2="300" y2="500" class="grid"/><line x1="0" y1="50" x2="350" y2="50" class="grid"/><line x1="0" y1="100" x2="350" y2="100" class="grid"/><line x1="0" y1="150" x2="350" y2="150" class="grid"/><line x1="0" y1="200" x2="350" y2="200" class="grid"/><line x1="0" y1="250" x2="350" y2="250" class="grid"/><line x1="0" y1="300" x2="350" y2="300" class="grid"/><line x1="0" y1="350" x2="350" y2="350" class="grid"/><line x1="0" y1="400" x2="350" y2="400" class="grid"/><line x1="0" y1="450" x2="350" y2="450" class="grid"/><rect x="205" y="0" width="145" height="185" class="wet"/><rect x="260" y="0" width="90" height="90" class="shower"/><line x1="260" y1="0" x2="260" y2="55" class="screen"/><line x1="295" y1="90" x2="350" y2="90" class="screen"/><circle cx="318" cy="70" r="5" class="fx"/><line x1="314.5" y1="66.5" x2="321.5" y2="73.5" class="ln-thin"/><circle cx="305" cy="45" r="5" class="fx-d"/><rect x="207" y="0" width="48" height="42" class="fx" rx="4"/><ellipse cx="231" cy="23.5" rx="15.8" ry="12.6" class="ln-thin"/><circle cx="231" cy="6" r="2.5" class="fx-d"/><rect x="332" y="112" width="18" height="36" class="fx" rx="3"/><ellipse cx="308" cy="130" rx="23" ry="16" class="fx"/><ellipse cx="308" cy="130" rx="14.3" ry="9.9" class="ln-thin"/><rect x="195" y="0" width="10" height="105" class="part"/><rect x="195" y="175" width="10" height="20" class="part"/><rect x="205" y="185" width="145" height="10" class="part"/><path d="M 205 105 A 70 70 0 0 1 275 175" class="arc"/><line x1="205" y1="175" x2="275" y2="175" class="leaf"/><text x="232" y="65" class="lbl" text-anchor="middle" dominant-baseline="central">KM</text><text x="232" y="80" class="lbl-s" text-anchor="middle" dominant-baseline="central">2.68 m²</text><rect x="95" y="240" width="215" height="210" class="rug" rx="3"/><rect x="0" y="5" width="60" height="105" class="f-store"/><line x1="30" y1="9" x2="30" y2="106" class="rod"/><line x1="19" y1="13" x2="41" y2="21" class="ln-thin"/><line x1="19" y1="29" x2="41" y2="37" class="ln-thin"/><line x1="19" y1="45" x2="41" y2="53" class="ln-thin"/><line x1="19" y1="61" x2="41" y2="69" class="ln-thin"/><line x1="19" y1="77" x2="41" y2="85" class="ln-thin"/><line x1="19" y1="93" x2="41" y2="101" class="ln-thin"/><text x="30" y="57.5" class="lbl halo-store" text-anchor="middle" dominant-baseline="central">Lemari</text><rect x="0" y="110" width="60" height="45" class="f-store"/><line x1="30" y1="113" x2="30" y2="152" class="ln-thin"/><text x="30" y="132.5" class="lbl halo-store" text-anchor="middle" dominant-baseline="central">Rak</text><rect x="0" y="160" width="40" height="85" class="f-store"/><rect x="4" y="164" width="32" height="77" class="f-live" rx="5"/><text x="20" y="202.5" class="lbl" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 20 202.5)">Bangku</text><rect x="0" y="165" width="22" height="80" class="ghost-in"/><circle cx="20" cy="266" r="16" class="f-pot"/><ellipse cx="28.8" cy="266" rx="8" ry="8" class="f-plant"/><ellipse cx="24.4" cy="273.6" rx="8" ry="8" class="f-plant"/><ellipse cx="15.6" cy="273.6" rx="8" ry="8" class="f-plant"/><ellipse cx="11.2" cy="266" rx="8" ry="8" class="f-plant"/><ellipse cx="15.6" cy="258.4" rx="8" ry="8" class="f-plant"/><ellipse cx="24.4" cy="258.4" rx="8" ry="8" class="f-plant"/><rect x="0" y="285" width="40" height="120" class="f-live"/><line x1="5" y1="295" x2="5" y2="395" class="tv"/><text x="20" y="345" class="lbl" text-anchor="middle" dominant-baseline="central">TV</text><rect x="0" y="405" width="55" height="80" class="f-work"/><text x="27.5" y="445" class="lbl" text-anchor="middle" dominant-baseline="central">Meja</text><rect x="62" y="420" width="45" height="45" class="f-chair" rx="7"/><rect x="98" y="424" width="9" height="37" class="f-chair-b" rx="3"/><rect x="345" y="205" width="5" height="280" class="f-head"/><rect x="137" y="265" width="208" height="160" class="f-bed"/><rect x="339" y="265" width="6" height="160" class="f-head"/><rect x="303" y="279" width="30" height="62" class="pillow" rx="6"/><rect x="303" y="349" width="30" height="62" class="pillow" rx="6"/><line x1="283" y1="265" x2="283" y2="425" class="ln-thin"/><line x1="283" y1="391" x2="249" y2="425" class="ln-thin"/><text x="210" y="337" class="lbl" text-anchor="middle" dominant-baseline="central">Kasur</text><text x="210" y="353" class="lbl-s" text-anchor="middle" dominant-baseline="central">160×200</text><rect x="303" y="220" width="42" height="42" class="f-store"/><text x="324" y="241" class="lbl-xs" text-anchor="middle" dominant-baseline="central">NK</text><rect x="303" y="428" width="42" height="42" class="f-store"/><text x="324" y="449" class="lbl-xs" text-anchor="middle" dominant-baseline="central">NK</text><polyline points="10,488 17,496 24,488 31,496 38,488 45,496 52,488 59,496 66,488 73,496 80,488 87,496 94,488 101,496 108,488 115,496 122,488 129,496 136,488 143,496 150,488 157,496 164,488 171,496 178,488 185,496 192,488 199,496 206,488 213,496 220,488 227,496 234,488 241,496 248,488 255,496 262,488 269,496 276,488 283,496 290,488 297,496 304,488 311,496 318,488 325,496 332,488 339,496" class="curtain-l"/><rect x="-20" y="-12" width="20" height="524" class="masonry"/><rect x="0" y="-12" width="95" height="12" class="wall"/><rect x="185" y="-12" width="177" height="12" class="wall"/><rect x="350" y="0" width="12" height="512" class="wall"/><rect x="0" y="500" width="15" height="12" class="wall"/><rect x="335" y="500" width="15" height="12" class="wall"/><rect x="15" y="500" width="320" height="12" class="win"/><line x1="15" y1="504.5" x2="335" y2="504.5" class="glass-fixed"/><line x1="15" y1="507.5" x2="335" y2="507.5" class="glass-fixed"/><path d="M 95 0 A 90 90 0 0 0 185 90" class="arc-fixed"/><rect x="185" y="0" width="5" height="90" class="leaf-fixed"/><text x="348" y="-22" class="tag-txt" text-anchor="end" dominant-baseline="central">KORIDOR</text><polygon points="133,-27 147,-27 140,-16" class="arrow-fill"/><text x="175" y="528" class="tag-txt" text-anchor="middle" dominant-baseline="central">KACA GESER PENUH</text><line x1="0" y1="-58" x2="350" y2="-58" class="dim"/><line x1="0" y1="-65" x2="0" y2="-51" class="dim"/><line x1="-4" y1="-54" x2="4" y2="-62" class="dim-t"/><line x1="350" y1="-65" x2="350" y2="-51" class="dim"/><line x1="346" y1="-54" x2="354" y2="-62" class="dim-t"/><text x="175" y="-68" class="dimtxt" text-anchor="middle" dominant-baseline="central">3.50</text><line x1="-44" y1="0" x2="-44" y2="500" class="dim"/><line x1="-51" y1="0" x2="-37" y2="0" class="dim"/><line x1="-48" y1="4" x2="-40" y2="-4" class="dim-t"/><line x1="-51" y1="500" x2="-37" y2="500" class="dim"/><line x1="-48" y1="504" x2="-40" y2="496" class="dim-t"/><text x="-54" y="250" class="dimtxt" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 -54 250)">5.00</text><circle cx="334" cy="345" r="11" class="callout"/><text x="334" y="345.5" class="callout-t" text-anchor="middle" dominant-baseline="central">1</text><circle cx="332" cy="523" r="11" class="callout"/><text x="332" y="523.5" class="callout-t" text-anchor="middle" dominant-baseline="central">2</text><circle cx="190" cy="480" r="11" class="callout"/><text x="190" y="480.5" class="callout-t" text-anchor="middle" dominant-baseline="central">3</text><circle cx="30" cy="62" r="11" class="callout"/><text x="30" y="62.5" class="callout-t" text-anchor="middle" dominant-baseline="central">4</text><circle cx="28" cy="452" r="11" class="callout"/><text x="28" y="452.5" class="callout-t" text-anchor="middle" dominant-baseline="central">5</text><circle cx="250" cy="230" r="11" class="callout"/><text x="250" y="230.5" class="callout-t" text-anchor="middle" dominant-baseline="central">6</text><circle cx="100" cy="300" r="11" class="callout"/><text x="100" y="300.5" class="callout-t" text-anchor="middle" dominant-baseline="central">7</text><circle cx="240" cy="122" r="11" class="callout"/><text x="240" y="122.5" class="callout-t" text-anchor="middle" dominant-baseline="central">8</text></svg></figure>
+  <h3>B2 → B2+</h3><table><thead><tr><th></th><th>B2</th><th>B2+</th></tr></thead><tbody><tr><th scope="row">Jendela</th><td>2.25 × 1.30 m</td><td>Kaca geser 3.20 × 2.60 m</td></tr><tr><th scope="row">Lorong sisi utara kasur</th><td>65 cm</td><td>70 cm</td></tr><tr><th scope="row">Sisi kasur ke kaca</th><td>80 cm</td><td>75 cm</td></tr><tr><th scope="row">Meja kerja</th><td>–</td><td>80 cm, top teraso</td></tr><tr><th scope="row">Lemari</th><td>1.5 m, tinggi standar</td><td>1.05 m setinggi plafon + rak terbuka 0.45 m</td></tr><tr><th scope="row">Penyimpanan sepatu</th><td>Rak 35 × 80</td><td>Bangku 40 × 85</td></tr><tr><th scope="row">Lantai bebas</th><td>8.7 m²</td><td>8.4 m²</td></tr><tr><th scope="row">Jalur tersempit</th><td>105 cm</td><td>75 cm</td></tr><tr><th scope="row">KM</th><td>Tirai shower, kloset duduk</td><td>Kaca shower, kloset gantung</td></tr></tbody></table>
+  <h3>Catatan</h3>
+  <ul class="notes">
+    <li>Model dibangun dari ukuran denah yang sama (cm); render realtime, bukan fotorealistis.</li>
+    <li>Kaca geser penuh butuh balok/lintel di atas bukaan 3.20 m dan railing kaca ±1.05 m bila kamar tidak di lantai dasar.</li>
+    <li>Asumsi tinggi: plafon 2.80 m, kaca 2.60 m, pintu 2.10 m.</li>
+  </ul>
+  <p class="ver">Versi 1.0.0 · 04.10.2026</p>
+</aside>
+<script type="application/json" id="plan-data">{"rug": [95, 240, 310, 450], "wardrobe": [0, 5, 60, 110], "shelf": [0, 110, 60, 155], "bench": [0, 160, 40, 245], "ac": [0, 165, 22, 245], "plant": [4, 250, 36, 282], "console": [0, 285, 40, 405], "desk": [0, 405, 55, 485], "chair": [62, 420, 107, 465], "panel": [345, 205, 350, 485], "bed": [137, 265, 345, 425], "nakasN": [303, 220, 345, 262], "nakasS": [303, 428, 345, 470], "curtain": [10, 486, 340, 498]}</script>
+<script type="application/json" id="style-data">{"kontemporer": {"name": "Kontemporer Hangat (referensi)", "tex": {"floor": "porcelain", "wall": "plaster", "head": "fabric", "bathWall": "stone", "bathFloor": "tile60", "nightTop": "marbleDark"}, "colors": {"floor": "#c2b6a8", "wall": "#d6cbbd", "accentWall": "#d6cbbd", "base": "#cbbfb0", "stone": "#d9d3cb", "woodDark": "#5b4c41", "slat": "#54463c", "door": "#463a32", "head": "#b9ab9a", "bedFab": "#a99a88", "sheet": "#f4f1ec", "duvet": "#efebe6", "pillow": "#a89c8e", "pillow2": "#cbc6bf", "throw": "#7f8c6c", "cushion": "#d8d0c4", "chair": "#cfc6b8", "rugOut": "#c9bba9", "rugIn": "#d9cfc2", "sheer": "#f6f3ee", "blackout": "#a89d91", "metal": "#1e1e1e", "pot": "#dcd6cc", "top": "#ece7e0", "marbleTop": "#ffffff", "bathWall": "#d9d0c4", "bathFloor": "#bdb3a7", "bathFloorDark": "#a89f94", "wallOut": "#ebe6df", "cap": "#e3dcd2"}, "finish": {"lantai": "Porselen 60×120 greige, nat tipis", "dinding": "Plester tekstur (limewash) krem", "aksen": "Panel smoked oak + 3 panel kain taupe berlampu latar, kotak atas dengan ceruk LED", "tv": "Kisi smoked oak, diapit panel batu besar", "kasur": "Rangka dan headboard tinggi berlapis kain taupe", "lemari": "Smoked oak setinggi plafon, tanpa handle, LED tepi; rak terbuka rangka hitam", "top": "Teraso terang", "nakas": "Melayang, kayu gelap dengan top marmer hitam", "linen": "Putih, bantal taupe dan abu, selimut sage", "gorden": "Vitrase putih + blackout taupe dari kantong plafon", "jendela": "Kaca geser penuh 3.20 × 2.60 m, rangka aluminium hitam, railing kaca", "kmdinding": "Porselen batu krem 60×120", "kmlantai": "Porselen greige 60×60", "logam": "Hitam doff"}}, "japandi": {"name": "Japandi", "tex": {"floor": "planks", "wall": "plaster", "head": "fabric", "bathWall": "tile", "bathFloor": "tile60", "nightTop": "veneer"}, "colors": {"floor": "#c9a67c", "wall": "#ece7df", "accentWall": "#e2dacd", "base": "#e7e1d7", "stone": "#e6e0d6", "woodDark": "#b48a5e", "slat": "#b98f63", "door": "#c9b08e", "head": "#d9cfbf", "bedFab": "#cbbca6", "sheet": "#f4f1ea", "duvet": "#f2eee6", "pillow": "#e2d9cb", "pillow2": "#cfc6b6", "throw": "#8a8f6a", "cushion": "#e3dccf", "chair": "#8c8f6b", "rugOut": "#b5a68d", "rugIn": "#d8cdb9", "sheer": "#f7f4ee", "blackout": "#b8ab95", "metal": "#2a2a2a", "pot": "#c9bfb2", "top": "#efe9e0", "marbleTop": "#c59d72", "bathWall": "#e7e2d9", "bathFloor": "#a39c92", "bathFloorDark": "#8d877e", "wallOut": "#ebe6df", "cap": "#e3dcd2"}, "finish": {"lantai": "Vinyl plank oak natural", "dinding": "Plester halus putih hangat", "aksen": "Panel oak + panel kain linen oat", "tv": "Kisi oak, diapit panel batu terang", "kasur": "Rangka kain oatmeal", "lemari": "Oak natural setinggi plafon, rak terbuka", "top": "Teraso putih", "nakas": "Oak natural", "linen": "Putih gading, selimut olive", "gorden": "Vitrase + blackout pasir", "jendela": "Kaca geser penuh 3.20 × 2.60 m, rangka aluminium hitam, railing kaca", "kmdinding": "Keramik krem matte 30×60", "kmlantai": "Keramik abu batu 60×60", "logam": "Hitam doff"}}, "hotel": {"name": "Modern Hotel", "tex": {"floor": "planks", "wall": "plaster", "head": "velvet", "bathWall": "marble", "bathFloor": "tile60", "nightTop": "marbleDark"}, "colors": {"floor": "#7a5a40", "wall": "#d9d6d0", "accentWall": "#9d968c", "base": "#2c2c2c", "stone": "#cfcac3", "woodDark": "#4a3628", "slat": "#5e4330", "door": "#3e2f24", "head": "#3f4c56", "bedFab": "#2f3a42", "sheet": "#f6f6f4", "duvet": "#f5f5f3", "pillow": "#3f4c56", "pillow2": "#b08d57", "throw": "#a8794d", "cushion": "#3f4c56", "chair": "#3f4c56", "rugOut": "#4a4845", "rugIn": "#77736d", "sheer": "#efede8", "blackout": "#4b5257", "metal": "#b48a4a", "pot": "#2d2f31", "top": "#f1efec", "marbleTop": "#ffffff", "bathWall": "#eeeae4", "bathFloor": "#55524e", "bathFloorDark": "#45423f", "wallOut": "#ebe6df", "cap": "#dcd8d2"}, "finish": {"lantai": "Vinyl plank walnut", "dinding": "Plester greige", "aksen": "Panel walnut + beludru slate blue, dinding greige gelap", "tv": "Kisi walnut", "kasur": "Rangka beludru slate", "lemari": "Walnut gelap setinggi plafon", "top": "Teraso terang", "nakas": "Walnut dengan top marmer hitam", "linen": "Putih, bantal slate dan mustard, selimut karamel", "gorden": "Vitrase + blackout abu arang", "jendela": "Kaca geser penuh 3.20 × 2.60 m, rangka aluminium hitam, railing kaca", "kmdinding": "Porselen motif marmer 30×60", "kmlantai": "Porselen abu gelap 60×60", "logam": "Kuningan (brass)"}}, "tropis": {"name": "Tropis", "tex": {"floor": "planks", "wall": "plaster", "head": "rattan", "bathWall": "tile", "bathFloor": "terrazzo", "nightTop": "veneer"}, "colors": {"floor": "#a87443", "wall": "#efe8dc", "accentWall": "#b7c1a7", "base": "#e9e1d3", "stone": "#e4dccd", "woodDark": "#8a5a2e", "slat": "#8a5a2e", "door": "#7a4f2b", "head": "#d6b47c", "bedFab": "#b07a45", "sheet": "#f6f1e6", "duvet": "#f4eee2", "pillow": "#e8dcc8", "pillow2": "#c46f4b", "throw": "#c46f4b", "cushion": "#6e8b6a", "chair": "#6e8b6a", "rugOut": "#9c8562", "rugIn": "#cdb98f", "sheer": "#f5efe3", "blackout": "#6e8b6a", "metal": "#232323", "pot": "#b46a46", "top": "#efe7da", "marbleTop": "#b07a45", "bathWall": "#8fa99b", "bathFloor": "#ddd6c8", "bathFloorDark": "#c9c1b2", "wallOut": "#ebe6df", "cap": "#e6dfd3"}, "finish": {"lantai": "Plank kayu jati", "dinding": "Plester putih tulang, dinding kepala kasur sage", "aksen": "Panel jati + anyaman rotan", "tv": "Kisi jati", "kasur": "Rangka jati", "lemari": "Jati setinggi plafon, rak terbuka", "top": "Teraso krem", "nakas": "Jati", "linen": "Putih, aksen terakota dan sage", "gorden": "Vitrase + blackout hijau sage", "jendela": "Kaca geser penuh 3.20 × 2.60 m, rangka aluminium hitam, railing kaca", "kmdinding": "Keramik hijau sage 30×60", "kmlantai": "Teraso krem 60×60", "logam": "Hitam doff"}}}</script>
+<script type="application/json" id="view-data">{"iso": {"pos": [-5.3, 6.4, 6.9], "target": [0.15, 0.5, 0.1], "fov": 32, "cap": "Isometrik dari barat daya, sudut yang sama dengan gambar referensi. Dinding yang menghadap kamera disembunyikan."}, "iso2": {"pos": [5.5, 6.3, 6.4], "target": [-0.25, 0.5, -0.05], "fov": 32, "cap": "Isometrik dari tenggara: dinding TV, konsol dan meja teraso, lemari, rak terbuka, dan bangku."}, "denah": {"ortho": true, "cap": "Denah render, tampak atas tanpa plafon. Koridor (utara) di atas, kaca geser di bawah."}, "kaca": {"pos": [-0.95, 1.5, -0.05], "target": [0.8, 1.2, 2.45], "fov": 62, "cap": "Ke arah kaca geser penuh: gorden dari kantong plafon, lampu track, dan dinding kepala kasur."}, "pintu": {"pos": [-0.25, 1.6, -2.24], "target": [0.1, 0.95, 1.8], "fov": 72, "cap": "Dari pintu masuk: pandangan pertama ke kasur dan kaca geser."}, "kasur": {"pos": [1.25, 1.12, 0.95], "target": [-1.75, 1.0, 1.0], "fov": 62, "cap": "Duduk di kasur, menghadap dinding TV, konsol, dan meja kerja."}, "jendela": {"pos": [-0.05, 1.55, 2.28], "target": [-0.25, 1.05, -2.1], "fov": 72, "cap": "Dari sisi kaca ke arah pintu: lemari setinggi plafon, rak terbuka, bangku, dan pintu KM."}, "km": {"pos": [0.38, 1.6, -0.88], "target": [1.5, 1.0, -2.15], "fov": 82, "cap": "Kamar mandi: dinding porselen batu, wastafel di atas kabinet kayu, kaca shower rangka hitam."}}</script>
+<script type="module" src="app.js"></script>
+<script>
+(function () {
+  var dock = document.getElementById('dock');
+  dock.querySelectorAll('[role="tab"]').forEach(function (t) {
+    t.addEventListener('click', function () {
+      dock.dataset.tab = t.dataset.tab;
+      dock.querySelectorAll('[role="tab"]').forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
+    });
+  });
+  var info = document.getElementById('info'), bi = document.getElementById('btn-info');
+  function openInfo(o) { info.hidden = !o; bi.setAttribute('aria-expanded', o ? 'true' : 'false'); if (o) document.getElementById('btn-close').focus(); else bi.focus(); }
+  bi.addEventListener('click', function () { openInfo(info.hidden); });
+  document.getElementById('btn-close').addEventListener('click', function () { openInfo(false); });
+  info.addEventListener('click', function (e) { if (e.target.closest('[data-goto]')) { info.hidden = true; bi.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !info.hidden) openInfo(false); });
+  var bf = document.getElementById('btn-full');
+  if (!document.fullscreenEnabled) bf.hidden = true;
+  else bf.addEventListener('click', function () {
+    if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(function () {});
+  });
+  var deferred = null, bInst = document.getElementById('btn-install');
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; bInst.hidden = false; });
+  bInst.addEventListener('click', function () {
+    if (!deferred) return; deferred.prompt();
+    deferred.userChoice.finally(function () { deferred = null; bInst.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { bInst.hidden = true; });
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (ios && !standalone && location.protocol === 'https:') document.getElementById('ios-tip').hidden = false;
+  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function () {});
+  setTimeout(function () { var h = document.getElementById('hint3d'); if (h) h.classList.add('dim'); }, 9000);
+  setTimeout(function () { if (!window.__b2pReady) { var l = document.querySelector('#loading p'); if (l) l.textContent = 'Model 3D belum bisa dimuat. Pastikan WebGL aktif, lalu muat ulang.'; } }, 20000);
+})();
+</script>
+
+</body>
+</html>
